@@ -5,7 +5,7 @@
 <?php include('./components/nav.php'); ?>
     <div class="profile">
         <div class="profile-pic">
-            <img src="./assets/images/green.png" alt="Avatar" style="width:100%">
+            <img src="./assets/images/green.png" alt="green duck" style="width:100%">
         </div>
         <div class="profile-info">
         <h2>Pat Quack</h2>
