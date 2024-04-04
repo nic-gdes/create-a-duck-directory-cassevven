@@ -53,9 +53,9 @@ if(empty($img_src)) {
 } 
 //check it is an actual image
 
-$size_check = @getimagesize($FILES["img_src"]["tmp_name"]);
+$size_check = @getimagesize($FILES["img_src"]["tmp_name"]); // Typo here, should be $_FILES
 $file_size = $_FILES["img_src"]["size"];
-    if(!size_check) {
+    if(!size_check) { // Typo here, should be $size_check
         $errors["img_src"] = "File is not an image";
     } else if ($file_size > 500000) {
         $errors["img_src"] = "Filesize limit exceeded.";
@@ -63,7 +63,12 @@ $file_size = $_FILES["img_src"]["size"];
     && $img_file_type != "png"
     && $img_file_type != "jpeg"
     && $img_file_type != "gif"
-    && $img_file_type != "webp"){
+    && $img_file_type != "webp"){ // you declared this variable as $image_file_type above, not $img_file_type
+        $errors["img_src"] = "Sorry, only jpg, png, jpeg, gif, webp";
+    } else if (move_uploaded_file($_FILES["img_src"]["tmp_name"], $image_file)) {
+    } else {
+        $errors["img_src"] = "Sorry, there was an  error uploading your image.";
+    }
     $errors["img_src"] = "Sorry, only jpg, png, jpeg, gif, webp";
     } else if (move_uploaded_file($_FILES["image_src"]["tmp_name"], $image_file)) {
     } else {
@@ -71,13 +76,13 @@ $file_size = $_FILES["img_src"]["size"];
     }
 
 
-if(!array_filter($errors)) {
+if(!array_filter($errors)) { // you have an extra conditional for if(!array_filter($errors)) here
     
 
 
 if(!array_filter($errors)) {
     require('./config/db.php');
-    $sql = "INSERT INTO ducks (name, favorite_foods, bio, img_src) VALUES ('$name', '$favorite_foods', '$bio', $img_file)";
+    $sql = "INSERT INTO ducks (name, favorite_foods, bio, img_src) VALUES ('$name', '$favorite_foods', '$bio', $img_file)"; // you used $img_file here but declared it as $image_file above
 
  mysqli_query($conn,$sql); 
 
@@ -87,7 +92,6 @@ if(!array_filter($errors)) {
  }else{
         print_r($errors);
     }
-}
 }
 
 ?>

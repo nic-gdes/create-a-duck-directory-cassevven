@@ -17,9 +17,9 @@ if (isset($_GET['id'])) {
         $duck_is_live = true;
     }
 
-    if(isset($_POST('submit'))) {
-        $id = $_POST('id_to_delete');
-    }
+    // if(isset($_POST('submit'))) {
+    //     $id = $_POST('id_to_delete');
+    // }
     
 }
 ?>
